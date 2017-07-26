@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片缩放</title>
+	<style>
+		*{margin:0;padding:0;}
+		ul#pic-scale{
+			width:770px;
+			height:360px;
+			margin:100px auto;
+			position: relative;
+		}
+		ul#pic-scale li{
+			list-style: none;
+			float:left;
+			position:absolute;
+			left:0;
+			top:0;
+			display:none;
+		}
+		ul#pic-scale li.on{
+			display:block;
+			z-index:1;
+		}
+		ul#pic-scale li.on img{
+			transform:scale(1.2,1.2);
+			/*transition:all 1s ease 0s;*/
+			animation:sf 4s ease 0s infinite;
+		}
+		@keyframes sf{
+			0%{
+				transform:scale(1.2,1.2);
+			}
+			100%{
+				transform:scale(1,1);
+			}
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var ulPic = document.getElementById('pic-scale');
+			var lisPic = ulPic.getElementsByTagName('li');
+			var index = 0;
+			var liblock = function(){
+				for(var i = 0;i<lisPic.length;i++){
+					lisPic[i].className = "";
+				}
+				index++;
+				index%=lisPic.length;
+				lisPic[index].className = "on";
+			}
+			setInterval(liblock,4000);
+		}
+	</script>
+</head>
+<body>
+	<ul id="pic-scale">
+		<li class="on"><img src="images/09/1.jpg" alt=""></li>
+		<li><img src="images/09/2.jpg" alt=""></li>
+		<li><img src="images/09/3.jpg" alt=""></li>
+		<li><img src="images/09/4.jpg" alt=""></li>
+		<li><img src="images/09/5.jpg" alt=""></li>
+	</ul>
+</body>
+</html>
